@@ -10,17 +10,11 @@ let mountains: Mountain[] = [
 ];
 
 function findNameOfTallestMountain(mountains: Mountain[]): string {
-    let tallest: Mountain = mountains[0];
-    mountains.forEach(mountain => {
-        if (mountain.height > tallest.height) {
-            tallest = mountain;
-        }
-    });
-    return tallest.name;
+    return mountains.reduce((c, m) => {return c.height > m.height ? c : m}).name;
 }
 
-let tallestMountain = findNameOfTallestMountain(mountains);
-console.log(tallestMountain);
+let tallest = findNameOfTallestMountain(mountains);
+console.log(tallest);
  
 
 interface Product {
@@ -35,8 +29,8 @@ let Products: Product[] = [
     {name: "Grape", price: 3.25},
 ];
 
-function calcAverageProductPrice(product: Product[]): number{
-    return product.reduce((s, p) => s + p.price, 0) / product.length;
+function calcAverageProductPrice(products: Product[]): number{
+    return products.reduce((s, p) => s + p.price, 0) / products.length;
 }
 
 let average = calcAverageProductPrice(Products);

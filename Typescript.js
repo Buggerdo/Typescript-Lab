@@ -4,24 +4,18 @@ var mountains = [
     { name: "Denali", height: 20310 }
 ];
 function findNameOfTallestMountain(mountains) {
-    var tallest = mountains[0];
-    mountains.forEach(function (mountain) {
-        if (mountain.height > tallest.height) {
-            tallest = mountain;
-        }
-    });
-    return tallest.name;
+    return mountains.reduce(function (c, m) { return c.height > m.height ? c : m; }).name;
 }
-var tallestMountain = findNameOfTallestMountain(mountains);
-console.log(tallestMountain);
+var tallest = findNameOfTallestMountain(mountains);
+console.log(tallest);
 var Products = [
     { name: "Apple", price: 1.25 },
     { name: "Banana", price: 0.25 },
     { name: "Pear", price: 2.25 },
     { name: "Grape", price: 3.25 },
 ];
-function calcAverageProductPrice(product) {
-    return product.reduce(function (s, p) { return s + p.price; }, 0) / product.length;
+function calcAverageProductPrice(products) {
+    return products.reduce(function (s, p) { return s + p.price; }, 0) / products.length;
 }
 var average = calcAverageProductPrice(Products);
 console.log(average);
